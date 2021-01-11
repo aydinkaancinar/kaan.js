@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" style="font-family: Arial">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>kaan.js</title>
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script defer type="text/javascript" src="js/kaan.js"></script>
+    <script defer type="text/javascript" src="js/examples.js"></script>
+  </head>
+  <body>
+    <div style="text-align: center">
+      <h1 style="margin: 30px">Kaan.js</h1>
+      <h3>a 2D physics simulation library for JavaScript</h3>
+      <h3>click <a href="documentation.html">here</a> for documentation</h3>
+      <div id="env1"></div>
+      <div>
+        <button id="env1button" onclick="env1.startEnviroment()">Start!</button>
+      </div>
+      <div
+        id="env1code"
+        style="text-align: center; display: inline-block; margin: 10px"
+      >
+        <div style="margin: 10px">
+          Click start button to start the enviroment
+        </div>
+        <div style="margin: 10px">
+          With this library, you can generate an enviroment and in that
+          enviroment, you can create solid, liquid, and gas materials
+        </div>
+        <div style="margin: 10px">
+          Enviroment has parameters such as gravity and color, some objects
+          respond to some of these variables
+        </div>
+        <div style="margin: 10px">
+          Start! button envokes the code: env1.startEnviroment()
+        </div>
+        <div style="margin: 10px">Code:</div>
+        <pre style="text-align: left; color: white; background: #494949">
+            &lt;script&gt;
+            const env1 = new Enviroment("env1", 300, 600, "White", 10, 200)
+            env1.createEnviroment()
+            const env1_solid1 = new Matter(env1, 200, 40, 200.1, 100, 'Orange', 100, false, true, "sand1")
+            env1_solid1.createSolid()
+            const env1_solid2 = new Matter(env1, 40, 35, 160, 100, 'Orange', 100, false, true, "sand2")
+            env1_solid2.createSolid()
+            const env1_solid3 = new Matter(env1, 39.5, 35, 400.3, 100, 'Orange', 100, false, true, "sand3")
+            env1_solid3.createSolid()
+            const env1_liquid1 = new Matter(env1, 40, 40, 280, 60, 'Blue', 100, false, true, "water")
+            env1_liquid1.createLiquid()
+            const env1_gas1 = new Matter(env1, 40, 40, 280, 200, '#afdfff', 100, false, true, "air")
+            env1_gas1.createGas()
+            const env1_solid4 = new Matter(env1, 200, 3, 200, 200, 'Green', 100, false, true, "grass")
+            env1_solid4.createSolid()
+            const env1_solid5 = new Matter(env1, 50, 50, 275, 220, 'Grey', 100, false, true, "home")
+            env1_solid5.createSolid()
+            const env1_solid6= new Matter(env1, 56, 10, 272, 280, '#cb4154', 100, false, true, "roof")
+            env1_solid6.createSolid()
+            const env1_solid7 = new Matter(env1, 10, 20, 220, 220, 'Brown', 100, false, true, "treebody1")
+            env1_solid7.createSolid()
+            const env1_solid8 = new Matter(env1, 30, 30, 210, 260, 'Green', 100, false, true, "tree1")
+            env1_solid8.createSolid()
+            const env1_solid9 = new Matter(env1, 10, 20, 370, 220, 'Brown', 100, false, true, "treebody2")
+            env1_solid9.createSolid()
+            const env1_solid10 = new Matter(env1, 30, 30, 360, 260, 'Green', 100, false, true, "tree2")
+            env1_solid10.createSolid()
+            &lt;/script&gt;
+          </pre
+        >
+      </div>
+      <div id="env2"></div>
+      <div
+        id="env2code"
+        style="text-align: center; display: inline-block; margin: 10px"
+      >
+        <div style="margin: 10px">
+          Matters can be initialized in a way to let end user interact with
+          objects by clicking and dragging them.
+        </div>
+        <div style="margin: 10px">
+          If user drops the object gravity will be applied to the object.
+        </div>
+        <div style="margin: 10px">Code:</div>
+        <pre style="text-align: left; color: white; background: #494949">
+            &lt;script&gt;
+            const env2 = new Enviroment("env2", 300, 600, '#003366', 0, 200)
+            env2.createEnviroment()
+            const env2_solid1 = new Matter(env2, 40, 60, 200, 150, 'Orange', 100, true, true, "orange")
+            env2_solid1.createSolid()
+            const env2_solid2 = new Matter(env2, 90, 30, 120, 100, 'Cyan', 20, true, true, "cyan")
+            env2_solid2.createSolid()
+            const env2_solid3 = new Matter(env2, 30, 80, 130, 200, 'Purple', 20, true, "purple")
+            env2_solid3.createSolid()
+            env2.startEnviroment()
+            &lt;/script&gt;
+          </pre
+        >
+      </div>
+      <div id="env3"></div>
+      <div>
+        <button id="env3button1" onclick="oxygen.showItem()">
+          Add Oxygen!
+        </button>
+        <button id="env3button2" onclick="hydrogen.showItem()">
+          Add Hydrogen!
+        </button>
+      </div>
+      <div>
+        <button id="env3button3" onclick="env3.startEnviroment()">
+          Start!
+        </button>
+      </div>
+      <div
+        id="env3code"
+        style="text-align: center; display: inline-block; margin: 10px"
+      >
+        <div style="margin: 10px">Matters can be made reactable</div>
+        <div style="margin: 10px">
+          Oxygen! button envokes the code: oxygen.showItem()
+        </div>
+        <div style="margin: 10px">
+          Hydrogen! button envokes the code: hydrogen.showItem()
+        </div>
+        <div style="margin: 10px">
+          Start! button envokes the code: env3.startEnviroment()
+        </div>
+        <div style="margin: 10px">Code:</div>
+        <pre style="text-align: left; color: white; background: #494949">
+            &lt;script&gt;
+            const env3 = new Enviroment("env3", 300, 600, '#eeeeee', 10, 200)
+            env3.createEnviroment()
+            const oxygen = new Matter(env3, 40, 40, 180, 150, '#afdfff', 100, false, false, "oxygen")
+            oxygen.createGas()
+            const hydrogen = new Matter(env3, 40, 40, 380, 150, '#afefef', 100, false, false, "hydrogen")
+            hydrogen.createGas()
+            const water = new Matter(env3, 40, 40, 380, 150, 'Blue', 100, false, false, "water")
+            water.createLiquid()
+            oxygen.setReactable(hydrogen, water)
+            &lt;/script&gt;
+          </pre
+        >
+      </div>
+      <div
+        id="env5code"
+        style="text-align: center; display: inline-block; margin: 10px"
+      >
+        <div id="env5"></div>
+        <div style="margin: 10px">
+          Matters will react to changes in enviroment.
+        </div>
+        <div style="margin: 10px">
+          The slider envokes env5.changeTemparature(this.value) on change.
+        </div>
+        <div>Change Temparature</div>
+        <div>
+          -200
+          <input
+            type="range"
+            id="temparature"
+            name="temparature"
+            min="-250"
+            max="250"
+            onchange="env5.changeTemparature(this.value)"
+          />
+          200
+        </div>
+        <div style="margin: 10px">Code:</div>
+        <pre style="text-align: left; color: white; background: #494949">
+            &lt;script&gt;
+            const env5 = new Enviroment("env5", 300, 600, "lightgreen", 0, 200);
+            env5.createEnviroment();
+            const env5_item1 = new Matter(env5,200,40,200.1,100,"Orange",100,true,true,"sand1",-100,100);
+            env5_item1.createSolid();
+            const env5_item2 = new Matter(env5,200,40,200.1,100,"Blue",100,true,true,"blue",-200,200);
+            env5_item2.createSolid();
+            env5.startEnviroment();
+            &lt;/script&gt;
+          </pre
+        >
+      </div>
+      <div id="env4"></div>
+      <div
+        id="env4code"
+        style="text-align: center; display: inline-block; margin: 10px"
+      >
+        <div style="margin: 10px">
+          Library lets developers attach a user interface to the enviroments to
+          add new Matters
+        </div>
+        <div style="margin: 10px">Code:</div>
+        <pre style="text-align: left; color: white; background: #494949">
+            &lt;script&gt;
+            const env4 = new Enviroment("env4", 300, 600, 'Black', 0, 200)
+            env4.createEnviroment()
+            const env4_solid1 = new Matter(env4, 50, 50, 220, 100, 'Red', 100, true, true, "red")
+            env4_solid1.createSolid()
+            const env4_solid2 = new Matter(env4, 80, 40, 300, 150, 'Green', 20, true, true, "green")
+            env4_solid2.createSolid()
+            const env4_solid3 = new Matter(env4, 100, 20, 230, 250, 'Blue', 20, true, true)
+            env4_solid3.createSolid()
+            env4.startEnviroment()
+            new EnviromentController(env4).create()
+            &lt;/script&gt;
+          </pre
+        >
+      </div>
+    </div>
+  </body>
+</html>
