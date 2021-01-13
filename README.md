@@ -1,9 +1,9 @@
 # js-library-cinarayd
 
-Link to my landing page: http://intense-sands-10753.herokuapp.com/examples.html
+Link to my landing page: https://kaancinar.me/kaan.js/examples.html
 
 
-Directlink to my documentation: http://intense-sands-10753.herokuapp.com/documentation.html
+Directlink to my documentation: https://kaancinar.me/kaan.js/documentation.html
 
 
 Getting Started: 
