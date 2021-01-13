@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" style="font-family: Arial">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>kaan.js</title>
+  </head>
+  <body>
+    <div>
+      <div style="text-align: center">
+        <h1 style="margin: 30px">Kaan.js</h1>
+        <h3>a 2D physics simulation library for JavaScript</h3>
+        <h3>click <a href="examples.html">here</a> for examples</h3>
+      </div>
+      <div style="text-align: center">
+        <h2>Getting Started</h2>
+      </div>
+      <div style="margin: 10px">
+        <a
+          href="https://github.com/aydinkaancinar/kaan.js/blob/main/pub/js/kaan.js"
+          target="_blank"
+        >
+          Download the library</a
+        >
+      </div>
+      <div style="margin: 10px">
+        To use this library, all you need is jQuery, and this library itself, no
+        other external js or css file is required. Here are some code snippets
+        showing some basic library functionality:
+      </div>
+      <ul>
+        <li>
+          Creating an <a href="#Enviroment">Environment</a> (check API for more
+          details on constructor parameters):
+          <pre
+            style="
+              text-align: left;
+              color: white;
+              background: #494949;
+              margin-right: 40px;
+            "
+          >
+                &lt;script&gt;
+                const env1 = new Enviroment("env1", 300, 600, "White", 0, 200)
+                env1.createEnviroment()
+                &lt;/script&gt;
+              </pre
+          >
+        </li>
+        <li>
+          Creating a <a href="#Matter">Matter</a> (check API for more details on
+          constructor parameters), the code below will create a solid,
+          optionally, createLiquid(), and createGas() could be called to create
+          a liquid or a gas respectively:
+          <pre
+            style="
+              text-align: left;
+              color: white;
+              background: #494949;
+              margin-right: 40px;
+            "
+          >
+                &lt;script&gt;
+                const env1_solid1 = new Matter(env1, 200, 40, 200.1, 100, 'Orange', 100, false, true, "sand1")
+                env1_solid1.createSolid()
+                &lt;/script&gt;
+              </pre
+          >
+        </li>
+        <li>
+          Creating a <a href="#EnviromentController">EnviromentController</a>:
+          <pre
+            style="
+              text-align: left;
+              color: white;
+              background: #494949;
+              margin-right: 40px;
+            "
+          >
+                &lt;script&gt;
+                new EnviromentController(env4).create()
+                &lt;/script&gt;
+              </pre
+          >
+        </li>
+      </ul>
+      <div style="text-align: center">
+        <h2>API</h2>
+      </div>
+      <div id="env1code" style="margin: 10px">
+        <h3 id="Enviroment">
+          Enviroment(name, height, width, color, temparature, gravity)
+        </h3>
+        <div>
+          Simulates a real environment, with properties such as temparature,
+          gravity, etc. Objects <a href="#Matter">(Matter)</a> can be placed
+          inside an environment, and the objects will interact with the features
+          of the environment. Objects can be added, and removed from
+          environment, but objects can't leave an environment, i.e. all
+          interactions will take place in an objects assigned environment.
+        </div>
+        <div style="margin: 10px">
+          <strong> Constructor Parameters: </strong>
+        </div>
+        <ul>
+          <li>
+            <strong>name:</strong> name of the environment, takes the id of a
+            div that is in the html document, for example if the environment is
+            going to be named env1, there should be a div defined such that its
+            id="env1".
+          </li>
+          <li><strong>height:</strong> height of the environment</li>
+          <li><strong>width:</strong> width of the environment</li>
+          <li><strong>color:</strong> color of the environment</li>
+          <li><strong>temparature:</strong> temperature of the environment</li>
+          <li><strong>gravity:</strong> gravity of the environment</li>
+        </ul>
+        <div style="margin: 10px"><strong> Functions: </strong></div>
+        <ul>
+          <li>
+            <strong>createEnviroment():</strong> Initializes the environment
+            using the properties assigned by the user. Adds event listeners to
+            the div corresponding to this object.
+          </li>
+          <li>
+            <strong>changeTemparature(temp):</strong> Changes the temparature of
+            the environment to temp, then makes the Matters in the enviroment
+            react to this changes accordingly.
+          </li>
+          <li>
+            <strong>applyGravity():</strong> Applies gravity to all the objects
+            in environment.
+          </li>
+          <li>
+            <strong>applyGravityOnList(lst):</strong> Applies gravity to a given
+            list of Matters inside the environment.
+          </li>
+          <li>
+            <strong>startEnviroment():</strong> This function starts
+            interactions (such as gravity, reactions, phase changes...) in
+            environment, this has to be called by developer manually.
+          </li>
+          <li>
+            <strong>initiateReaction(reactant1, reactant2, product):</strong>
+            This is called automatically by the library functions if to
+            react-able objects collide, but can also be called manually by
+            developer to induce a reaction. For this function to induce a
+            reaction, reactant1 and reactant2 should be set reactable to create
+            the product, for more info check
+            <a href="#setReactable">Matter.setReactable(other, product)</a>.
+          </li>
+          <li>
+            <strong>removeItem(item):</strong>
+            Removes the passed in Matter (item) from the environment.
+            <a href="#setReactable">Matter.setReactable(other, product)</a>.
+          </li>
+        </ul>
+        <h3 id="Matter">
+          Matter(enviroment, width, height, x, y, color="White", mass=0,
+          movable=true, displayItem=true, name = "")
+        </h3>
+        <div style="margin: 10px">
+          <strong> Constructor Parameters: </strong>
+        </div>
+        <ul>
+          <li>
+            <strong>enviroment:</strong> <a href="#Enviroment">Environment</a>
+            that the matter is in.
+          </li>
+          <li><strong>width:</strong> width of the matter</li>
+          <li><strong>height:</strong> height of the matter</li>
+          <li><strong>x:</strong> x position</li>
+          <li><strong>y:</strong> y position</li>
+          <li><strong>color:</strong> color of the matter, white by default</li>
+          <li><strong>mass:</strong> mass of the matter, 0 by default</li>
+          <li>
+            <strong>movable:</strong> assigns if the matter is movable by
+            dragging it with mouse, true by default.
+          </li>
+          <li id="displayItem">
+            <strong>displayItem:</strong> assigns if the matter should be
+            displayed right after the initialization, true by default.
+          </li>
+          <li>
+            <strong>name:</strong> the name of the matter, this is the main
+            identifier for a type of matter.
+          </li>
+        </ul>
+        <div style="margin: 10px"><strong> Functions: </strong></div>
+        <ul>
+          <li>
+            <strong>createSolid():</strong> Creates a solid matter with above
+            specifications.
+          </li>
+          <li>
+            <strong>createLiquid():</strong> Creates a liquid matter with above
+            specifications.
+          </li>
+          <li>
+            <strong>createGas():</strong> Creates a gas matter with above
+            specifications.
+          </li>
+          <li>
+            <strong>isColliding():</strong> Returns a list of other matters this
+            matter is touching.
+          </li>
+          <li>
+            <strong>changeColor(r, g, b):</strong>
+            Changes the color of the matter to the color specified with the
+            passed red (r), green (g), blue (b) values.
+          </li>
+          <li>
+            <strong>changePosition(x, y):</strong>
+            Changes the position of the matter to the x and y.
+          </li>
+          <li>
+            <strong>logProperties():</strong>
+            Sends a console message which has the properties of this matter.
+          </li>
+          <li>
+            <strong>showItem():</strong>
+            Sets <a href="#displayItem">displayItem</a> true and adds the matter
+            to the DOM.
+          </li>
+          <li id="setReactable">
+            <strong>setReactable(other, product):</strong>
+            Makes this matter react-able with the other matter, if a reaction
+            occurs later, the product is going to be the result of the reaction.
+          </li>
+          <li>
+            <strong>setMovable(move):</strong>
+            Takes a boolean move as input, if boolean is true, the object is
+            movable otherwise object is not movable
+          </li>
+          <li>
+            <strong>getProduct(other)():</strong>
+            Returns the product (Matter object) that is formed by reacting with
+            other, returns null if there is no reaction with other.
+          </li>
+          <li>
+            <strong>duplicateMatter(x, y):</strong>
+            Creates another matter with same specifications as this, at x and y
+            position that is passed in.
+          </li>
+          <li>
+            <strong>isSame():</strong>
+            Returns if the matters share the same name (are they same type of
+            matter)
+          </li>
+        </ul>
+        <h3 id="EnviromentController">EnviromentController(enviroment)</h3>
+        <div style="margin: 10px">
+          <strong> Constructor Parameters: </strong>
+          <ul>
+            <li>
+              <strong>enviroment:</strong>
+              This is the environment that the controller controls.
+            </li>
+          </ul>
+          <strong> Functions: </strong>
+          <ul>
+            <li>
+              <strong>create():</strong>
+              Creates the EnviromentController.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
